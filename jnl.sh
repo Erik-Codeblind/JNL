@@ -10,6 +10,12 @@ then
   NEW_FILE=$FILES_DIR/$(date +"%Y/%m/%d").$FILE_EXT
   touch $NEW_FILE
   open -a $EDITOR_APP $NEW_FILE
+
+  if [ "$TIMER" -gt 0 ];then
+    sleep $TIMER
+    osascript -e "tell app \"System Events\" to display dialog \"$ALERT_MESSAGE\""
+  fi
+
 else
   echo "Configuration error."
   exit 1;
