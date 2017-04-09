@@ -12,7 +12,11 @@ then
   open -a $EDITOR_APP $NEW_FILE
 
   if [ "$TIMER" -gt 0 ];then
-    sleep $TIMER
+    while [ $TIMER -gt 0 ]; do
+        printf "$TIMER\r"
+        sleep 1
+        : $((TIMER--))
+    done
     osascript -e "tell app \"System Events\" to display dialog \"$ALERT_MESSAGE\""
   fi
 
