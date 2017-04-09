@@ -13,7 +13,7 @@ then
 
   if [ "$TIMER" -gt 0 ];then
     while [ $TIMER -gt 0 ]; do
-        printf "$TIMER\r"
+        printf "\e[1m $TIMER\r\e[0m"
         sleep 1
         : $((TIMER--))
     done
