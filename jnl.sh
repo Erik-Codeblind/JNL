@@ -6,15 +6,28 @@ if [ ! -z "$FILES_DIR" ] &&
    [ ! -z "$FILE_EXT" ] &&
    [ -d "$FILES_DIR" ]
 then
-  if [ "$1" = "new" ];then
-    TIMESTAMP=$(date +"%s")
+  TIMESTAMP=0
+  DATE=$(date +"%Y/%m")
+  while test $# -gt 0
+  do
+   case "$1" in
+    --last) LAST=1
+    ;;
+    --new) TIMESTAMP=$(date +"%s")
+    ;;
+    --no-timer) TIMER=0
+    ;;
+    esac
+    shift
+  done
+  if [ $LAST -eq 1 ];then
+    FILE=$FILES_DIR/$DATE/$(ls "$FILES_DIR/$DATE" | tail -1)
   else
-    TIMESTAMP=0
+    mkdir -p $FILES_DIR/$DATE
+    FILE=$FILES_DIR/$DATE/$(date +%d).$TIMESTAMP.$FILE_EXT
+    touch $FILE
   fi
-  mkdir -p $FILES_DIR/$(date +"%Y/%m")
-  NEW_FILE=$FILES_DIR/$(date +"%Y/%m/%d").$TIMESTAMP.$FILE_EXT
-  touch $NEW_FILE
-  open -a $EDITOR_APP $NEW_FILE
+  open -a $EDITOR_APP $FILE
 
   if [ "$TIMER" -gt 0 ];then
     while [ $TIMER -gt 0 ]; do
