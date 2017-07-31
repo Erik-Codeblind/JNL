@@ -13,13 +13,18 @@ then
    case "$1" in
     --last) LAST=1
     ;;
-    --new) TIMESTAMP=$(date +"%s")
+    --new)
+      # Set the current Unix Epoch timestamp if no default file for today exists.
+      if [ -f $FILES_DIR/$DATE/$(date +%d).0.$FILE_EXT ];then
+        TIMESTAMP=$(date +"%s")
+      fi
     ;;
     --no-timer) TIMER=0
     ;;
     esac
     shift
   done
+
   if [ $LAST -eq 1 ];then
     FILE=$FILES_DIR/$DATE/$(ls "$FILES_DIR/$DATE" | tail -1)
   else
