@@ -6,14 +6,21 @@ if [ ! -z "$FILES_DIR" ] &&
    [ ! -z "$FILE_EXT" ] &&
    [ -d "$FILES_DIR" ]
 then
+  if [ "$1" = "new" ];then
+    TIMESTAMP=$(date +"%s")
+  else
+    TIMESTAMP=0
+  fi
   mkdir -p $FILES_DIR/$(date +"%Y/%m")
-  NEW_FILE=$FILES_DIR/$(date +"%Y/%m/%d").$FILE_EXT
+  NEW_FILE=$FILES_DIR/$(date +"%Y/%m/%d").$TIMESTAMP.$FILE_EXT
   touch $NEW_FILE
   open -a $EDITOR_APP $NEW_FILE
 
   if [ "$TIMER" -gt 0 ];then
     while [ $TIMER -gt 0 ]; do
-        printf "\e[1m $TIMER\r\e[0m"
+        mins=$((TIMER / 60));
+        secs=$((TIMER - (mins * 60)));
+        printf "\e[1m $mins m $secs s \r\e[0m"
         sleep 1
         : $((TIMER--))
     done
