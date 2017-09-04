@@ -1,4 +1,5 @@
 #!/bin/sh
+# @TODO RUN ME THROUGH A LINTER
 cd "$(dirname "$0")"
 . ./CONFIG.sh
 if [ ! -z "$FILES_DIR" ] &&
@@ -8,6 +9,9 @@ if [ ! -z "$FILES_DIR" ] &&
 then
   TIMESTAMP=0
   DATE=$(date +"%Y/%m")
+  LAST=0
+  # @TODO MAKE ME A FUNCTION
+  # @TODO UPDATE REAMDE
   while test $# -gt 0
   do
    case "$1" in
@@ -25,7 +29,8 @@ then
     shift
   done
 
-  if [ $LAST -eq 1 ];then
+  # @TODO MAKE ME A FUNCTION
+  if [ "$LAST" -eq 1 ];then
     FILE=$FILES_DIR/$DATE/$(ls "$FILES_DIR/$DATE" | tail -1)
   else
     mkdir -p $FILES_DIR/$DATE
@@ -34,8 +39,9 @@ then
   fi
   open -a $EDITOR_APP $FILE
 
+    # @TODO MAKE ME A FUNCTION
   if [ "$TIMER" -gt 0 ];then
-    while [ $TIMER -gt 0 ]; do
+    while [ "$TIMER" -gt 0 ]; do
         mins=$((TIMER / 60));
         secs=$((TIMER - (mins * 60)));
         printf "\e[1m $mins m $secs s \r\e[0m"
