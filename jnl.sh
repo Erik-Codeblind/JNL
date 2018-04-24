@@ -2,6 +2,14 @@
 # @TODO RUN ME THROUGH A LINTER
 cd "$(dirname "$0")"
 . ./CONFIG.sh
+
+# Mount an APFS drive.
+if [ ! -z "$APFS_MOUNT" ] &&
+   [ ! -d "$FILES_DIR" ]
+then
+ diskutil apfs unlock "$APFS_MOUNT"
+fi
+
 if [ ! -z "$FILES_DIR" ] &&
    [ ! -z "$EDITOR_APP" ] &&
    [ ! -z "$FILE_EXT" ] &&
