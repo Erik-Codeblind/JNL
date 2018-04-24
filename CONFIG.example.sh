@@ -9,3 +9,6 @@ FILE_EXT=txt
 TIMER=0
 # Set a message to display when the time's up.
 ALERT_MESSAGE=$'Time\'s up!'
+# Optionally mount an APFS drive (provide disk id).
+# Provide the volume id, e.g., disk1s1.
+APFS_MOUNT=
