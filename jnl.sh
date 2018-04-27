@@ -8,7 +8,7 @@ if [ ! -z "$APFS_MOUNT" ] &&
    [ ! -d "$FILES_DIR" ]
 then
  diskutil apfs unlock "$APFS_MOUNT"
-
+ 
 elif [ ! -z "$DMG_MOUNT" ] &&
    [ ! -d "$FILES_DIR" ]
 then
