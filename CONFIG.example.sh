@@ -12,3 +12,5 @@ ALERT_MESSAGE=$'Time\'s up!'
 # Optionally mount an APFS drive (provide disk id).
 # Provide the volume id, e.g., disk1s1.
 APFS_MOUNT=
+# Full path to the dmg
+DMG_MOUNT=

@@ -8,6 +8,11 @@ if [ ! -z "$APFS_MOUNT" ] &&
    [ ! -d "$FILES_DIR" ]
 then
  diskutil apfs unlock "$APFS_MOUNT"
+ 
+elif [ ! -z "$DMG_MOUNT" ] &&
+   [ ! -d "$FILES_DIR" ]
+then
+   hdiutil attach "$DMG_MOUNT"
 fi
 
 if [ ! -z "$FILES_DIR" ] &&
